@@ -31,6 +31,7 @@ public class SecurityConfig {
                         .pathMatchers("/auth/**").permitAll()
                         // 🔒 Requerir token para el resto
                         .pathMatchers("/users/**").authenticated()
+                        .pathMatchers("/appointments/**").authenticated()
                         .anyExchange().permitAll()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt());
