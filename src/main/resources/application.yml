@@ -1,26 +1,37 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
   application:
     name: api-gateway
-
   cloud:
     gateway:
       server:
         webflux:
           routes:
-            - id: usuarios-service
-              uri: lb://USUARIOS-SERVICE
+            - id: users-service
+              uri: lb://USERS-SERVICE
               predicates:
-                - Path=/usuarios/**
+                - Path=/auth/**,/users/**
+
+
           discovery:
             locator:
               enabled: true
               lower-case-service-id: true
+app:
+  jwt:
+    secret: my-super-secret-key-for-jwt-demo-only
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+
+
+
+
+
+
 
